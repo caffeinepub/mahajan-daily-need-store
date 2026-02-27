@@ -46,7 +46,7 @@ export function StoreFooter({ storeInfo }: StoreFooterProps) {
             <ul className="space-y-3">
               <li className="flex items-start gap-3 font-body text-sm text-white/80">
                 <MapPin size={16} className="text-saffron mt-0.5 shrink-0" />
-                <span>{storeInfo?.address || "Shop No. 12, Main Bazar Road, Sadar, Delhi - 110001"}</span>
+                <span>{storeInfo?.address || "Post Office Shikroha, Distt. Bilaspur, Himachal Pradesh - 174032"}</span>
               </li>
               <li className="flex items-center gap-3 font-body text-sm text-white/80">
                 <Phone size={16} className="text-saffron shrink-0" />
@@ -73,8 +73,8 @@ export function StoreFooter({ storeInfo }: StoreFooterProps) {
                 <div className="w-10 h-10 rounded-full bg-saffron/20 flex items-center justify-center mx-auto">
                   <MapPin size={18} className="text-saffron" />
                 </div>
-                <p className="font-body text-xs text-white/60">Main Bazar Road</p>
-                <p className="font-body text-xs text-white/40">Sadar, Delhi – 110001</p>
+                <p className="font-body text-xs text-white/60">Post Office Shikroha</p>
+                <p className="font-body text-xs text-white/40">Bilaspur, HP – 174032</p>
               </div>
 
               {/* Fake map grid lines */}
