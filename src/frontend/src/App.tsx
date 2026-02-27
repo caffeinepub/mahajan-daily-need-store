@@ -11,6 +11,7 @@ import { ProductCard } from "./components/ProductCard";
 import { ProductSkeleton } from "./components/ProductSkeleton";
 import { CartDrawer } from "./components/CartDrawer";
 import { StoreFooter } from "./components/StoreFooter";
+import { WhatsAppButton } from "./components/WhatsAppButton";
 import {
   useAllProducts,
   useCart,
@@ -38,13 +39,20 @@ export default function App() {
   const refetchProducts = productsQuery.refetch;
 
   // Initialize products once when actor is ready
+  // If products already exist, init will fail (trap) but we still refetch to show them
   useEffect(() => {
     if (actor && !actorLoading && !initialized) {
       setInitialized(true);
-      initProductsMutate(undefined, {
-        onSettled: () => {
-          refetchProducts();
-        },
+      // First try to fetch existing products
+      refetchProducts().then((result) => {
+        // If no products found, try to initialize
+        if (!result.data || result.data.length === 0) {
+          initProductsMutate(undefined, {
+            onSettled: () => {
+              refetchProducts();
+            },
+          });
+        }
       });
     }
   }, [actor, actorLoading, initialized, initProductsMutate, refetchProducts]);
@@ -253,6 +261,9 @@ export default function App() {
 
       {/* Footer */}
       <StoreFooter storeInfo={storeInfo.data} />
+
+      {/* Floating WhatsApp Button */}
+      <WhatsAppButton />
     </div>
   );
 }
